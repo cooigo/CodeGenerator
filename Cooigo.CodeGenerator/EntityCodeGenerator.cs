@@ -21,7 +21,7 @@ namespace Cooigo.CodeGenerator
             sw.WriteLine();
             sw.WriteLine();
             sw.WriteLine("/* ------------------------------------------------------------------------- */");
-            sw.WriteLine("/* APPENDED BY CODE GENERATOR, MOVE TO CORRECT PLACE AND REMOVE THIS COMMENT */");
+            sw.WriteLine("/*                                                                           */");
             sw.WriteLine("/* ------------------------------------------------------------------------- */");
         }
 
@@ -66,11 +66,18 @@ namespace Cooigo.CodeGenerator
 
             Directory.CreateDirectory(siteWebPath);
 
-            
+            GenerateRow();
+            GenerateFilter();
+            GenerateRepository();
 
-            if (config.GenerateColumn)
-                GenerateColumns();
-            
+            GenerateDeleteRequest();
+            GenerateListRequest();
+            GenerateListResponse();
+            GenerateSaveRequest();
+
+            GenerateUnitOfWork();
+
+
         }
 
         private string CreateDirectoryOrBackupFile(string file)
@@ -121,7 +128,7 @@ namespace Cooigo.CodeGenerator
         }
         
 
-        private void GenerateColumns()
+        private void GenerateRow()
         {
             CreateNewSiteWebFile(Templates.Render(new Views.EntityModel(), new
             {
@@ -132,8 +139,103 @@ namespace Cooigo.CodeGenerator
                 Fields = model.Fields,
                 IdField = model.Identity,
                 NameField = model.NameField
-            }), Path.Combine(@"Modules\", Path.Combine(model.Module ?? model.RootNamespace, Path.Combine(model.ClassName, model.ClassName + "Columns.cs"))));
+            }), Path.Combine(@"Modules\", Path.Combine("", Path.Combine(model.ClassName, model.ClassName + ".cs"))));
         }
-        
+        private void GenerateFilter()
+        {
+            CreateNewSiteWebFile(Templates.Render(new Views.FilterEntity(), new
+            {
+                ClassName = model.ClassName,
+                RowClassName = model.RowClassName,
+                Module = model.Module,
+                RootNamespace = model.RootNamespace,
+                Fields = model.Fields,
+                IdField = model.Identity,
+                NameField = model.NameField
+            }), Path.Combine(@"Modules\", Path.Combine("", Path.Combine(model.ClassName, model.ClassName + "Filter.cs"))));
+        }
+
+        private void GenerateRepository()
+        {
+            CreateNewSiteWebFile(Templates.Render(new Views.EntityRepository(), new
+            {
+                ClassName = model.ClassName,
+                RowClassName = model.RowClassName,
+                Module = model.Module,
+                RootNamespace = model.RootNamespace,
+                Fields = model.Fields,
+                IdField = model.Identity,
+                NameField = model.NameField
+            }), Path.Combine(@"Modules\", Path.Combine("", Path.Combine(model.ClassName, model.ClassName + "Repository.cs"))));
+        }
+
+        private void GenerateDeleteRequest()
+        {
+            CreateNewSiteWebFile(Templates.Render(new Views.DeleteModel(), new
+            {
+                ClassName = model.ClassName,
+                RowClassName = model.RowClassName,
+                Module = model.Module,
+                RootNamespace = model.RootNamespace,
+                Fields = model.Fields,
+                IdField = model.Identity,
+                NameField = model.NameField
+            }), Path.Combine(@"Modules\", Path.Combine("", "DeleteModel.cs")));
+        }
+        private void GenerateListRequest()
+        {
+            CreateNewSiteWebFile(Templates.Render(new Views.ListRequest(), new
+            {
+                ClassName = model.ClassName,
+                RowClassName = model.RowClassName,
+                Module = model.Module,
+                RootNamespace = model.RootNamespace,
+                Fields = model.Fields,
+                IdField = model.Identity,
+                NameField = model.NameField
+            }), Path.Combine(@"Modules\", Path.Combine("", "ListRequest.cs")));
+        }
+
+        private void GenerateListResponse()
+        {
+            CreateNewSiteWebFile(Templates.Render(new Views.ListResponse(), new
+            {
+                ClassName = model.ClassName,
+                RowClassName = model.RowClassName,
+                Module = model.Module,
+                RootNamespace = model.RootNamespace,
+                Fields = model.Fields,
+                IdField = model.Identity,
+                NameField = model.NameField
+            }), Path.Combine(@"Modules\", Path.Combine("", "ListResponse.cs")));
+        }
+        private void GenerateSaveRequest()
+        {
+            CreateNewSiteWebFile(Templates.Render(new Views.SaveModel(), new
+            {
+                ClassName = model.ClassName,
+                RowClassName = model.RowClassName,
+                Module = model.Module,
+                RootNamespace = model.RootNamespace,
+                Fields = model.Fields,
+                IdField = model.Identity,
+                NameField = model.NameField
+            }), Path.Combine(@"Modules\", Path.Combine("", "SaveModel.cs")));
+        }
+
+        private void GenerateUnitOfWork()
+        {
+            CreateNewSiteWebFile(Templates.Render(new Views.UnitOfWork(), new
+            {
+                ClassName = model.ClassName,
+                RowClassName = model.RowClassName,
+                Module = model.Module,
+                RootNamespace = model.RootNamespace,
+                Fields = model.Fields,
+                IdField = model.Identity,
+                NameField = model.NameField
+            }), Path.Combine(@"Modules\", Path.Combine("", "UnitOfWork.cs")));
+        }
+
     }
 }

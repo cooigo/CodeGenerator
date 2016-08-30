@@ -1,0 +1,60 @@
+﻿@* Generator: Template *@
+@functions { public dynamic Model { get; set; } }@{
+    var dotModule = Model.Module == null ? "" : ("." + Model.Module);
+    var moduleDot = Model.Module == null ? "" : (Model.Module + ".");
+}
+namespace @(Model.RootNamespace)@(dotModule).Entities
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
+    public class ListRequest
+    {
+        public int Skip { get; set; }
+        public int Take { get; set; }
+        public SortBy[] Sort { get; set; }
+        public FilterEntity Filter { get; set; }
+    }
+
+    public abstract class FilterEntity { }
+    
+    public class SortBy
+    {
+        public SortBy()
+        {
+        }
+        public SortBy(string field)
+        {
+            Field = field;
+        }
+
+        public SortBy(string field, bool descending)
+        {
+            Field = field;
+            Descending = descending;
+        }
+
+        public string Field { get; set; }
+        public bool Descending { get; set; }
+
+        public override string ToString()
+        {
+            return Field + " " + (Descending ? "DESC" : "ASC");
+        }
+    }
+
+    public static class SortByHelper
+    {
+        public static string ToOrderByString(this SortBy[] sorts)
+        {
+            if (sorts != null && sorts.Length > 0)
+            {
+                return " ORDER BY " + string.Join(", ", sorts.Select(m => m.ToString()));
+            }
+            return "";
+        }
+    }
+    
+}

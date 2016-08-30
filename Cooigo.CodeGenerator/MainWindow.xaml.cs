@@ -268,7 +268,7 @@ namespace Cooigo.CodeGenerator
 
 
                 rowModel = RowGenerator.GenerateModel(connection, tableSchema, table,
-                    "xxx", ConnectionKey, e, "", config);
+                    null, ConnectionKey, e, null, config);
                 new EntityCodeGenerator(rowModel, config).Run();
             }
         }

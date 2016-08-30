@@ -87,6 +87,41 @@
     <Compile Include="SqlSchemaInfo.cs" />
     <Compile Include="StringInflector.cs" />
     <Compile Include="Templates.cs" />
+    <Compile Include="View\DeleteModel.generated.cs">
+      <DependentUpon>DeleteModel.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="View\EntityRepository.generated.cs">
+      <DependentUpon>EntityRepository.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="View\FilterEntity.generated.cs">
+      <DependentUpon>FilterEntity.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="View\UnitOfWork.generated.cs">
+      <DependentUpon>UnitOfWork.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="View\SaveModel.generated.cs">
+      <DependentUpon>SaveModel.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="View\ListResponse.generated.cs">
+      <DependentUpon>ListResponse.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="View\ListRequest.generated.cs">
+      <DependentUpon>ListRequest.cshtml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="View\EntityModel.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -135,6 +170,34 @@
     <AppDesigner Include="Properties\" />
     <None Include="SampleTemplate.cshtml">
       <Generator>RazorGenerator</Generator>
+    </None>
+    <None Include="View\DeleteModel.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>DeleteModel.generated.cs</LastGenOutput>
+    </None>
+    <None Include="View\EntityRepository.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>EntityRepository.generated.cs</LastGenOutput>
+    </None>
+    <None Include="View\FilterEntity.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>FilterEntity.generated.cs</LastGenOutput>
+    </None>
+    <None Include="View\UnitOfWork.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>UnitOfWork.generated.cs</LastGenOutput>
+    </None>
+    <None Include="View\SaveModel.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>SaveModel.generated.cs</LastGenOutput>
+    </None>
+    <None Include="View\ListResponse.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>ListResponse.generated.cs</LastGenOutput>
+    </None>
+    <None Include="View\ListRequest.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>ListRequest.generated.cs</LastGenOutput>
     </None>
     <None Include="View\EntityModel.cshtml">
       <Generator>RazorGenerator</Generator>

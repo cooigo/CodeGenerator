@@ -62,13 +62,13 @@ WriteLiteral("namespace ");
             
             #line default
             #line hidden
-WriteLiteral(".Columns\r\n{\r\n    using Serenity;\r\n    using Serenity.ComponentModel;\r\n    using S" +
-"erenity.Data;\r\n    using System;\r\n    using System.ComponentModel;\r\n    using Sy" +
-"stem.Collections.Generic;\r\n    using System.IO;\r\n\r\n    public class ");
+WriteLiteral(".Entities\r\n{\r\n    using System;\r\n    using System.ComponentModel;\r\n    using Syst" +
+"em.Collections.Generic;\r\n    using System.IO;\r\n    using Dapper.Contrib.Extensio" +
+"ns;\r\n\r\n    public class ");
 
 
             
-            #line 16 "..\..\View\EntityModel.cshtml"
+            #line 14 "..\..\View\EntityModel.cshtml"
              Write(Model.ClassName);
 
             
@@ -76,45 +76,26 @@ WriteLiteral(".Columns\r\n{\r\n    using Serenity;\r\n    using Serenity.Compone
             #line hidden
 
             
-            #line 16 "..\..\View\EntityModel.cshtml"
-                                   WriteLiteral("Columns\r\n    {");
+            #line 14 "..\..\View\EntityModel.cshtml"
+                                   WriteLiteral("\r\n    {");
 
             
             #line default
             #line hidden
             
-            #line 17 "..\..\View\EntityModel.cshtml"
+            #line 15 "..\..\View\EntityModel.cshtml"
       foreach (var x in Model.Fields) {
-        var attrs = new List<string>();
-        if (x.Ident == Model.IdField) {
-            attrs.Add("EditLink");
-            attrs.Add("DisplayName(\"Db.Shared.RecordId\")");
-            attrs.Add("AlignRight");
-        }
-        else if (x.Ident == Model.NameField) {
-            attrs.Add("EditLink");
-        }
-        if (attrs.Count > 0)
+        if (x.Flags == "PrimaryKey" || x.Flags== "Identity")
         {
             
             #line default
             #line hidden
-WriteLiteral("\r\n        [");
+WriteLiteral("\r\n        [Key]");
 
 
             
-            #line 29 "..\..\View\EntityModel.cshtml"
-    Write(string.Join(", ", attrs));
-
-            
-            #line default
-            #line hidden
-WriteLiteral("]");
-
-
-            
-            #line 29 "..\..\View\EntityModel.cshtml"
-                                          }
+            #line 18 "..\..\View\EntityModel.cshtml"
+                    }
             
             #line default
             #line hidden
@@ -122,7 +103,7 @@ WriteLiteral("\r\n        public ");
 
 
             
-            #line 30 "..\..\View\EntityModel.cshtml"
+            #line 19 "..\..\View\EntityModel.cshtml"
           Write(x.Type);
 
             
@@ -132,7 +113,7 @@ WriteLiteral(" ");
 
 
             
-            #line 30 "..\..\View\EntityModel.cshtml"
+            #line 19 "..\..\View\EntityModel.cshtml"
                   Write(x.Ident);
 
             
@@ -142,7 +123,7 @@ WriteLiteral(" { get; set; }");
 
 
             
-            #line 30 "..\..\View\EntityModel.cshtml"
+            #line 19 "..\..\View\EntityModel.cshtml"
                                                     }
 
             
